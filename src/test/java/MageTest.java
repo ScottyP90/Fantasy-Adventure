@@ -51,7 +51,7 @@ public class MageTest {
 
     @Test
     public void canSummonNewFamiliars() {
-        mage.summonNewFamilar(familiar2);
+        mage.summonNewFamiliar(familiar2);
         assertEquals(familiar2, mage.getFamiliar());
     }
 }

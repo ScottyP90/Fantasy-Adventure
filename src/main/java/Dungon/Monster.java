@@ -40,5 +40,8 @@ public class Monster {
         return this.attack;
     }
 
+    public void takeDamage(int damage){
+        this.vitality -= damage - this.defence;
+    }
 
 }

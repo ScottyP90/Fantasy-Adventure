@@ -1,5 +1,6 @@
 package Adventures;
 
+import Dungon.Monster;
 import EquipmentAndFamiliars.Familiar;
 import EquipmentAndFamiliars.Spell;
 import Interface.Iplayer;
@@ -7,7 +8,7 @@ import Interface.Iplayer;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Mage extends Adventurers implements Iplayer {
+public class Mage extends Adventurers {
 
     private ArrayList<Spell> spells;
     private Familiar familiar;
@@ -38,6 +39,7 @@ public class Mage extends Adventurers implements Iplayer {
         }
     }
 
+    @Override
     public int attack() {
         int totalAttack = this.getMagic() + this.spells.get(0).getMagicDamage() + this.familiar.getAttack();
         return totalAttack;
@@ -54,7 +56,15 @@ public class Mage extends Adventurers implements Iplayer {
         return this.spells.get(0);
     }
 
-    public void summonNewFamilar(Familiar newFamiliar){
+    public void summonNewFamiliar(Familiar newFamiliar){
         this.familiar = newFamiliar;
     }
+
+    @Override
+    public void defend(Monster monster){
+        int totalDamage = monster.attack() - (this.getDefence() + this.familiar.getDefence());
+        this.takeDamage(totalDamage);
+    }
+
+
 }

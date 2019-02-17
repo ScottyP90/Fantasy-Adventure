@@ -1,12 +1,13 @@
 package Adventures;
 
+import Dungon.Monster;
 import EquipmentAndFamiliars.Item;
 import Interface.Iplayer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Cleric extends Adventurers implements Iplayer {
+public class Cleric extends Adventurers {
 
     private ArrayList<Item> items;
     private int itemsCap;
@@ -35,8 +36,9 @@ public class Cleric extends Adventurers implements Iplayer {
         return this.getStrength() + this.items.get(0).getDamageValue();
     }
 
-    public int heal(){
-        return this.getMagic() + this.items.get(0).getHealingValue();
+    public void heal(Adventurers adventurer){
+        int totalHeal = this.getMagic() + this.items.get(0).getHealingValue();
+        adventurer.recoverVitality(totalHeal);
     }
 
     public void swapItems(Item item){
@@ -48,5 +50,10 @@ public class Cleric extends Adventurers implements Iplayer {
 
     public Item checkMainItem(){
         return this.items.get(0);
+    }
+
+    public void defend(Monster monster){
+        int totalDamage = monster.attack() - this.getDefence();
+        this.takeDamage(totalDamage);
     }
 }

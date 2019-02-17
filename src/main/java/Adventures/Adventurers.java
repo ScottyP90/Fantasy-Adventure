@@ -1,5 +1,6 @@
 package Adventures;
 
+import Dungon.Monster;
 import Dungon.Treasure;
 
 import java.util.ArrayList;
@@ -64,5 +65,22 @@ public abstract class Adventurers {
 
     public String fullTitle() {
         return this.name + " " + this.title;
+    }
+
+    public int attack(){
+        return this.getStrength();
+    }
+
+    public void defend(Monster monster){
+        int totalDamage = monster.attack() - this.getDefence();
+        this.takeDamage(totalDamage);
+    }
+
+    public void takeDamage(int damage){
+        this.vitality -= damage;
+    }
+
+    public void recoverVitality(int heal){
+        this.vitality += heal;
     }
 }

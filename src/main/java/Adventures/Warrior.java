@@ -1,12 +1,13 @@
 package Adventures;
 
+import Dungon.Monster;
 import EquipmentAndFamiliars.Weapon;
 import Interface.Iplayer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Warrior extends Adventurers implements Iplayer {
+public class Warrior extends Adventurers {
 
     private ArrayList<Weapon> weapons;
     private int weaponsCap;
@@ -31,6 +32,7 @@ public class Warrior extends Adventurers implements Iplayer {
         }
     }
 
+    @Override
     public int attack(){
         return this.getStrength() + this.weapons.get(0).getAttackValue();
     }
@@ -44,5 +46,10 @@ public class Warrior extends Adventurers implements Iplayer {
 
     public Weapon checkMainWeapon(){
         return this.weapons.get(0);
+    }
+
+    public void defend(Monster monster) {
+        int totalDamage = monster.getAttack() - (this.getDefence() + this.weapons.get(0).getDefenceValue());
+        this.takeDamage(totalDamage);
     }
 }
